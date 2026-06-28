@@ -16,6 +16,7 @@ function ref(id) {
 async function boot() {
   const refs = {
     hud: ref("hud"),
+    rail: ref("rail"),
     home: ref("home"),
     play: ref("play"),
     board: ref("board"),

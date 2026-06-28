@@ -23,7 +23,7 @@ function check(name, cond) {
 }
 
 function refsFromDom() {
-  const ids = ["hud","home","play","board","keyboard","boosters","message","overlay","toasts","fx","loading","loading-bar","loading-tip"];
+  const ids = ["hud","rail","home","play","board","keyboard","boosters","message","overlay","toasts","fx","loading","loading-bar","loading-tip"];
   const r = {};
   for (const id of ids) r[id.replace(/-(\w)/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
   // map ids with dashes
@@ -158,6 +158,11 @@ async function main() {
   let keyBtns = collectButtons(refs.keyboard);
   let keyDead = keyBtns.filter((b) => !(b._listeners.click && b._listeners.click.length));
   check("keyboard: all keys wired (" + keyBtns.length + ")", keyDead.length === 0 && keyBtns.length === 28);
+
+  // Desktop rail audit
+  let railBtns = collectButtons(refs.rail);
+  let railDead = railBtns.filter((b) => !(b._listeners.click && b._listeners.click.length));
+  check("rail: nav built + all wired (" + railBtns.length + ")", railBtns.length === 8 && railDead.length === 0);
 
   console.log(`DOM harness: ${pass} checks passed`);
 }

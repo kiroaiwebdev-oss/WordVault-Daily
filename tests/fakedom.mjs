@@ -190,7 +190,7 @@ export function setupDom() {
   if (typeof globalThis.performance === "undefined") setGlobal("performance", win.performance);
 
   // Create the DOM shell the game expects (matches index.html ids).
-  for (const id of ["hud", "home", "play", "board", "keyboard", "boosters", "message", "overlay", "toasts", "fx", "loading", "loading-bar", "loading-tip"]) {
+  for (const id of ["hud", "rail", "home", "play", "board", "keyboard", "boosters", "message", "overlay", "toasts", "fx", "loading", "loading-bar", "loading-tip"]) {
     const el = document.createElement(id === "fx" ? "canvas" : "div");
     document.register(id, el);
     document.body.appendChild(el);

@@ -62,6 +62,7 @@ export class Game {
     });
     this.screens = new Screens(this.refs.overlay, this.refs.toasts, this.api);
     this.home = new Home(this.refs.home, this.api);
+    this._buildRail();
     this.board = new Board(this.refs.board, { rows: 6, cols: 5 });
     this.keyboard = new Keyboard(this.refs.keyboard, (k) => { this.audio.unlock(); this.onKey(k); });
     this._buildBoosterBar();
@@ -92,6 +93,43 @@ export class Game {
   }
 
   now() { return new Date(); }
+
+  // Desktop navigation rail (hidden on mobile via CSS). Mirrors the home menu.
+  _buildRail() {
+    const rail = this.refs.rail;
+    if (!rail) return;
+    clear(rail);
+    rail.className = "rail";
+    const brand = el("div", { class: "rail__brand" }, [
+      el("div", { class: "rail__mark" }, ["W"]),
+      el("div", { class: "rail__name" }, [
+        el("span", { class: "logo__word" }, ["Word"]),
+        el("span", { class: "logo__vault" }, ["Vault"]),
+      ]),
+    ]);
+    rail.appendChild(brand);
+
+    const nav = el("div", { class: "rail__nav" });
+    const mk = (icon, label, fn) => {
+      const b = el("button", { class: "rail__btn", type: "button" }, [
+        el("span", { class: "rail__ic" }, [icon]),
+        el("span", { class: "rail__lbl" }, [label]),
+      ]);
+      b.addEventListener("click", () => { this.audio.unlock(); this.sfx("click"); fn(); });
+      nav.appendChild(b);
+    };
+    mk("🛒", "Shop", () => this.screens.openShop());
+    mk("🎨", "Skins", () => this.screens.openSkins());
+    mk("🌈", "Themes", () => this.screens.openThemes());
+    mk("🏆", "Achievements", () => this.screens.openAchievements());
+    mk("📊", "Stats", () => this.screens.openStats());
+    mk("👤", "Profile", () => this.screens.openProfile());
+    mk("❓", "How to Play", () => this.screens.openHowTo());
+    mk("⚙️", "Settings", () => this.screens.openSettings());
+    rail.appendChild(nav);
+
+    rail.appendChild(el("div", { class: "rail__foot" }, ["v1.1 · ♥"]));
+  }
 
   // ---- visuals (theme + skin) -----------------------------------------
   applyVisualState() {
