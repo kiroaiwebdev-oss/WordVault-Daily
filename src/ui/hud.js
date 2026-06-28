@@ -32,7 +32,7 @@ export class Hud {
     this.btnSettings = el("button", { class: "hud__icon", type: "button", "aria-label": "Settings", title: "Settings" }, ["⚙️"]);
 
     // Brand text shows only where there's room (hidden on tight widths via CSS).
-    this.title = el("div", { class: "hud__title" }, ["WordVault"]);
+    this.title = el("div", { class: "hud__title" }, ["Lexivault"]);
     const left = el("div", { class: "hud__left" }, [this.btnHome, this.title]);
     const center = el("div", { class: "hud__center" }, [this.coinChip, this.levelChip, this.streakChip]);
     const right = el("div", { class: "hud__right" }, [this.btnSettings]);
@@ -51,7 +51,7 @@ export class Hud {
     // On the home screen the icon is a logo; during play it's a pause/menu button.
     // Use glyphs that render reliably across platforms (avoids missing-box icons).
     this.btnHome.textContent = isHome ? "📖" : "☰";
-    this.btnHome.title = isHome ? "WordVault" : "Pause";
+    this.btnHome.title = isHome ? "Lexivault" : "Pause";
   }
 
   update(state) {

@@ -101,9 +101,9 @@ export class Game {
     clear(rail);
     rail.className = "rail";
     const brand = el("div", { class: "rail__brand" }, [
-      el("div", { class: "rail__mark" }, ["W"]),
+      el("div", { class: "rail__mark" }, ["L"]),
       el("div", { class: "rail__name" }, [
-        el("span", { class: "logo__word" }, ["Word"]),
+        el("span", { class: "logo__word" }, ["Lexi"]),
         el("span", { class: "logo__vault" }, ["Vault"]),
       ]),
     ]);
@@ -553,8 +553,8 @@ export class Game {
     const s = this.session;
     const dark = !this.save.settings.highContrast;
     const head = s.mode === "daily"
-      ? `WordVault #${s.day} ${won ? rows : "X"}/6${s.hardMode ? "*" : ""}`
-      : `WordVault Practice ${won ? rows : "X"}/6${s.hardMode ? "*" : ""}`;
+      ? `Lexivault #${s.day} ${won ? rows : "X"}/6${s.hardMode ? "*" : ""}`
+      : `Lexivault Practice ${won ? rows : "X"}/6${s.hardMode ? "*" : ""}`;
     const grid = s.guesses.map((g) => emojiRow(g.result, dark)).join("\n");
     return head + "\n\n" + grid;
   }

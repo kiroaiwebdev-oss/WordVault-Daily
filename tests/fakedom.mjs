@@ -1,4 +1,4 @@
-// Minimal DOM + browser-global stub sufficient to boot the real WordVault game
+// Minimal DOM + browser-global stub sufficient to boot the real Lexivault game
 // headlessly in Node. Implements the subset of the DOM API the game touches:
 // elements, classList, style, events (with click()), querySelector by class/tag,
 // canvas 2d context, localStorage, rAF, getComputedStyle, navigator, performance.

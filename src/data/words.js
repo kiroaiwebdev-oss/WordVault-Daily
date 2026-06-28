@@ -1,4 +1,4 @@
-// WordVault Daily — bundled word data (no network dependency, portal-size friendly).
+// Lexivault — bundled word data (no network dependency, portal-size friendly).
 // ANSWERS: curated common 5-letter words used as the daily/practice solutions.
 // EXTRA_VALID: additional accepted guesses that are never chosen as answers.
 // All words are exactly 5 lowercase letters.

@@ -52,7 +52,7 @@ export function fallbackAd({ rewarded = true, label = "Sponsored message" } = {}
     overlay.innerHTML = `
       <div class="ad-fallback__card">
         <div class="ad-fallback__tag">${label}</div>
-        <div class="ad-fallback__logo">WordVault</div>
+        <div class="ad-fallback__logo">Lexivault</div>
         <p class="ad-fallback__msg">Enjoying the game? Thanks for playing!</p>
         <div class="ad-fallback__count">Continue in <span>${remaining}</span>s</div>
         <button class="btn btn--ghost ad-fallback__skip" type="button" disabled>Skip</button>

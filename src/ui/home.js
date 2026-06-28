@@ -21,7 +21,7 @@ export class Home {
     // Hero
     const hero = el("div", { class: "home__hero" }, [
       el("div", { class: "logo" }, [
-        el("span", { class: "logo__word" }, ["WORD"]),
+        el("span", { class: "logo__word" }, ["LEXI"]),
         el("span", { class: "logo__vault" }, ["VAULT"]),
       ]),
       el("div", { class: "home__subtitle" }, [`${dayName(now)} · ${this.api.themeName()} theme`]),
@@ -89,7 +89,7 @@ export class Home {
     grid.appendChild(mk("❓", "How to Play", () => this.api.openHowTo()));
     this.root.appendChild(grid);
 
-    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.5"]));
+    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.6"]));
   }
 
   _missions(s) {

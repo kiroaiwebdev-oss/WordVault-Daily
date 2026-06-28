@@ -5,7 +5,7 @@ import { ANSWERS, EXTRA_VALID } from "../data/words.js";
 import { seededIndex } from "../core/rng.js";
 
 const WORD_RE = /^[a-z]{5}$/;
-export const EPOCH = Date.UTC(2024, 0, 1); // WordVault #1 = 2024-01-01 (UTC)
+export const EPOCH = Date.UTC(2024, 0, 1); // Lexivault #1 = 2024-01-01 (UTC)
 
 function sanitize(list) {
   const seen = new Set();
@@ -46,7 +46,7 @@ export function isAnswer(word) {
   return ANSWER_SET.has(String(word || "").toLowerCase());
 }
 
-// Day number since EPOCH (UTC) — this is the WordVault puzzle number.
+// Day number since EPOCH (UTC) — this is the Lexivault puzzle number.
 export function dayNumber(date = new Date()) {
   const utcMidnight = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
   return Math.floor((utcMidnight - EPOCH) / 86400000);

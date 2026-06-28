@@ -1,4 +1,4 @@
-# WordVault Daily — Deployment Guide
+# Lexivault — Deployment Guide
 
 A polished, dependency-free HTML5 daily word game. Pure vanilla ES modules, tiny
 footprint (~68 KB zipped per platform), fully responsive, iframe-safe, and

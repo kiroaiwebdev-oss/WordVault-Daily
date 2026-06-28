@@ -1,7 +1,7 @@
 {
-  "name": "wordvault-daily",
+  "name": "lexivault",
   "version": "1.0.0",
-  "description": "WordVault Daily — a premium daily 5-letter word guessing game (HTML5).",
+  "description": "Lexivault — a premium daily 5-letter word puzzle (HTML5).",
   "type": "module",
   "scripts": {
     "test": "node tests/selftest.mjs && node tests/fittest.mjs && node tests/domtest.mjs && node tests/sdkprobe.mjs",

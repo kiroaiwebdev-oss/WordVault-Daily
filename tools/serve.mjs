@@ -38,5 +38,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`WordVault Daily dev server: http://localhost:${PORT}`);
+  console.log(`Lexivault dev server: http://localhost:${PORT}`);
 });

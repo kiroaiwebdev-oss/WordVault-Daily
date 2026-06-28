@@ -148,7 +148,7 @@ async function main() {
   const targets = args.length ? args : Object.keys(PLATFORMS);
   const token = Date.now().toString(36);
   await fs.mkdir(DIST, { recursive: true });
-  console.log(`Building WordVault Daily  (version token: ${token})`);
+  console.log(`Building Lexivault  (version token: ${token})`);
   for (const p of targets) {
     await buildPlatform(p, token);
   }
