@@ -16,9 +16,11 @@ export class Board {
     clear(this.container);
     this.cells = [];
     this.container.classList.add("board");
-    // Reset any inline grid overrides from a previous bonus-row game.
+    // Reset any inline grid/size overrides from a previous game.
     this.container.style.gridTemplateRows = "";
     this.container.style.aspectRatio = "";
+    this.container.style.width = "";
+    this.container.style.height = "";
     this.rows = this._baseRows || this.rows;
     this._baseRows = this.rows;
     for (let r = 0; r < this.rows; r++) {
@@ -40,6 +42,23 @@ export class Board {
 
   applySkin(cls) {
     this.container.className = "board " + (cls || "skin-default");
+  }
+
+  // Size the board to fit its wrapper in BOTH dimensions while keeping the
+  // cols:rows ratio. This guarantees no overflow on any screen size/orientation.
+  fit() {
+    const wrap = this.container.parentElement;
+    if (!wrap) return;
+    const aw = wrap.clientWidth;
+    const ah = wrap.clientHeight;
+    if (!aw || !ah) return;
+    const ratio = this.cols / this.rows; // width / height
+    let h = ah;
+    let w = h * ratio;
+    if (w > aw) { w = aw; h = w / ratio; }
+    this.container.style.width = Math.floor(w) + "px";
+    this.container.style.height = Math.floor(h) + "px";
+    this.container.style.aspectRatio = "auto";
   }
 
   _setFaceText(tile, ch) {
@@ -157,9 +176,9 @@ export class Board {
     this.container.appendChild(rowEl);
     this.cells.push(rowCells);
     this.rows += 1;
-    // Keep the grid proportional as rows grow.
+    // Keep the grid proportional as rows grow, then refit to the wrapper.
     this.container.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
-    this.container.style.aspectRatio = `5 / ${this.rows}`;
+    this.fit();
   }
 
   reset() {

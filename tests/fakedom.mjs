@@ -52,11 +52,14 @@ class El {
   get id() { return this.attributes.id || ""; }
   set id(v) { this.attributes.id = v; }
   get firstChild() { return this.children[0] || null; }
+  get parentElement() { return this.parentNode; }
   get textContent() { return this._text; }
   set textContent(v) { this._text = String(v == null ? "" : v); this.children = []; }
   get innerHTML() { return this._html; }
   set innerHTML(v) { this._html = String(v == null ? "" : v); }
   get offsetWidth() { return 100; }
+  get clientWidth() { return this._cw != null ? this._cw : 300; }
+  get clientHeight() { return this._ch != null ? this._ch : 300; }
   appendChild(c) {
     if (!c) return c;
     c.parentNode = this;

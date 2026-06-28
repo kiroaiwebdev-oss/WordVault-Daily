@@ -228,6 +228,9 @@ export class Game {
     this._renderClues();
     this._updateBoosterBar();
     this.setState(GS.PLAYING);
+    // Size the board to fit the current viewport once layout is ready.
+    if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(() => this.board.fit());
+    else this.board.fit();
     this.adapter.gameplayStart();
     if (this.save.settings.music) this.audio.startMusic();
   }
@@ -499,6 +502,7 @@ export class Game {
     this._renderModeBadge();
     this._updateBoosterBar();
     this.setState(GS.RESULTS);
+    if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(() => this.board.fit());
     const won = d.status === "won";
     this.screens.openResults({
       won, answer: d.answer, rows: d.guesses.length, mode: "daily", day: d.day,
@@ -713,6 +717,17 @@ export class Game {
   }
 
   _wireLifecycle() {
+    if (typeof window !== "undefined") {
+      const onResize = () => {
+        if (this.state === GS.PLAYING || this.state === GS.RESULTS) this.board.fit();
+      };
+      this._onResize = onResize;
+      window.addEventListener("resize", onResize);
+      window.addEventListener("orientationchange", () => setTimeout(onResize, 150));
+      if (window.visualViewport && window.visualViewport.addEventListener) {
+        window.visualViewport.addEventListener("resize", onResize);
+      }
+    }
     if (typeof document !== "undefined") {
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
