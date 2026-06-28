@@ -70,6 +70,9 @@ body {
   z-index: 1;
 }
 
+/* Decorative backdrop is hidden on phones, shown on wide screens (see media query) */
+#bg-decor { display: none; }
+
 /* Subtle, premium scrollbars (no harsh default track line) */
 * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) transparent; }
 ::-webkit-scrollbar { width: 7px; height: 7px; }
@@ -110,19 +113,38 @@ body {
     animation: orbB 22s ease-in-out infinite;
   }
   #app {
-    height: min(940px, calc(100dvh - 48px));
-    width: min(440px, calc(100vw - 48px));
+    height: min(960px, calc(100dvh - 40px));
+    width: min(468px, calc(100vw - 40px));
     max-width: none;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.12);
     background: linear-gradient(165deg, var(--bg-1), var(--bg-2));
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset,
-                0 0 60px color-mix(in srgb, var(--glow) 18%, transparent);
+    box-shadow: 0 40px 110px rgba(0,0,0,0.62), 0 0 0 1px rgba(255,255,255,0.03) inset,
+                0 0 70px color-mix(in srgb, var(--glow) 22%, transparent);
     overflow: hidden;
+  }
+  /* Floating letter-tile backdrop fills the wide empty space (premium look) */
+  #bg-decor {
+    display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .bg-tile {
+    position: absolute; left: var(--x); top: var(--y);
+    width: clamp(54px, 6.5vw, 104px); aspect-ratio: 1; border-radius: 18px;
+    display: grid; place-items: center; font-weight: 900;
+    font-size: clamp(26px, 3.4vw, 52px);
+    color: color-mix(in srgb, var(--accent) 55%, #ffffff);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+    box-shadow: 0 14px 50px color-mix(in srgb, var(--accent) 14%, transparent);
+    transform: rotate(var(--r));
+    opacity: 0.16;
+    animation: floatTile 13s ease-in-out infinite;
+    animation-delay: var(--d);
   }
 }
 @keyframes orbA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vmax,4vmax) scale(1.1); } }
 @keyframes orbB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-5vmax,-4vmax) scale(1.12); } }
+@keyframes floatTile { 0%,100% { transform: rotate(var(--r)) translateY(0); } 50% { transform: rotate(var(--r)) translateY(-24px); } }
 
 .hidden { display: none !important; }
 

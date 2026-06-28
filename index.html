@@ -8,9 +8,25 @@
   <title>WordVault Daily</title>
   <!-- Inline SVG favicon kills the /favicon.ico 404 -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236aaa64'/%3E%3Ctext x='50%25' y='54%25' font-size='38' font-family='Arial,sans-serif' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'%3EW%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
+  <!-- Decorative floating letter-tile backdrop (desktop/wide screens only) -->
+  <div id="bg-decor" aria-hidden="true">
+    <span class="bg-tile" style="--x:5%;--y:12%;--r:-10deg;--d:0s">W</span>
+    <span class="bg-tile" style="--x:14%;--y:64%;--r:8deg;--d:1.2s">O</span>
+    <span class="bg-tile" style="--x:8%;--y:38%;--r:-4deg;--d:2.4s">R</span>
+    <span class="bg-tile" style="--x:20%;--y:86%;--r:12deg;--d:0.6s">D</span>
+    <span class="bg-tile" style="--x:26%;--y:22%;--r:-8deg;--d:3s">V</span>
+    <span class="bg-tile" style="--x:80%;--y:10%;--r:9deg;--d:1.8s">A</span>
+    <span class="bg-tile" style="--x:88%;--y:40%;--r:-6deg;--d:0.3s">U</span>
+    <span class="bg-tile" style="--x:74%;--y:70%;--r:5deg;--d:2.1s">L</span>
+    <span class="bg-tile" style="--x:90%;--y:84%;--r:-11deg;--d:1s">T</span>
+    <span class="bg-tile" style="--x:68%;--y:30%;--r:7deg;--d:3.4s">G</span>
+    <span class="bg-tile" style="--x:83%;--y:58%;--r:-3deg;--d:2.7s">E</span>
+    <span class="bg-tile" style="--x:32%;--y:54%;--r:10deg;--d:1.5s">S</span>
+  </div>
+
   <div id="app">
     <header id="hud"></header>
 
@@ -49,6 +65,6 @@
 
   <!-- PLATFORM_SDK_PLACEHOLDER : build.mjs injects the portal SDK <script> here -->
 
-  <script type="module" src="src/main.js?v=3"></script>
+  <script type="module" src="src/main.js?v=4"></script>
 </body>
 </html>
