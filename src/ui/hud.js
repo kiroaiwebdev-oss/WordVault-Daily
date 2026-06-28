@@ -2,7 +2,6 @@
 // action row (hint, hard-mode badge, pause). Pure view layer: game.js calls update().
 
 import { el } from "./dom.js";
-import { levelProgress } from "../systems/profile.js";
 
 export class Hud {
   constructor(root, handlers = {}) {
@@ -26,10 +25,8 @@ export class Hud {
     ]);
 
     this.levelNum = el("span", { class: "lvl__num" }, ["1"]);
-    this.xpFill = el("div", { class: "lvl__fill" });
     this.levelChip = el("button", { class: "chip chip--level", type: "button", title: "Profile" }, [
       el("span", { class: "lvl__badge" }, [this.levelNum]),
-      el("div", { class: "lvl__bar" }, [this.xpFill]),
     ]);
 
     this.btnSettings = el("button", { class: "hud__icon", type: "button", "aria-label": "Settings", title: "Settings" }, ["⚙️"]);
@@ -60,8 +57,6 @@ export class Hud {
     this.coins.textContent = String(state.coins);
     this.streak.textContent = String(state.stats.currentStreak);
     this.levelNum.textContent = String(state.level);
-    const p = levelProgress(state);
-    this.xpFill.style.width = Math.round(p.pct * 100) + "%";
   }
 
   pulseCoins() {
