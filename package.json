@@ -1,0 +1,16 @@
+{
+  "name": "wordvault-daily",
+  "version": "1.0.0",
+  "description": "WordVault Daily — a premium daily 5-letter word guessing game (HTML5).",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/selftest.mjs && node tests/domtest.mjs && node tests/sdkprobe.mjs",
+    "test:logic": "node tests/selftest.mjs",
+    "test:dom": "node tests/domtest.mjs",
+    "test:sdk": "node tests/sdkprobe.mjs",
+    "build": "node tools/build.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "license": "MIT",
+  "private": true
+}
