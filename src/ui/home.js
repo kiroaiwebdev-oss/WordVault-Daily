@@ -89,7 +89,7 @@ export class Home {
     grid.appendChild(mk("❓", "How to Play", () => this.api.openHowTo()));
     this.root.appendChild(grid);
 
-    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.3"]));
+    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.4"]));
   }
 
   _missions(s) {
