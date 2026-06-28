@@ -353,27 +353,52 @@ export class Screens {
     this.open("Profile", body, { cls: "panel--narrow" });
   }
 
-  // --- How to play ------------------------------------------------------
+  // --- How to play (clear, beginner-friendly) ---------------------------
   openHowTo(onClose) {
     const body = el("div", { class: "howto" });
-    body.appendChild(el("p", {}, ["Guess the hidden 5-letter word in 6 tries. Each guess must be a real word."]));
-    const examples = el("div", { class: "howto__examples" });
-    const mkExample = (word, idx, state, text) => {
-      const row = el("div", { class: "howto__row" });
-      for (let i = 0; i < word.length; i++) {
-        const cls = i === idx ? " tile--" + state + " flipped tile--revealed" : "";
-        row.appendChild(el("div", { class: "tile tile--filled tile--mini" + cls }, [word[i].toUpperCase()]));
-      }
-      examples.appendChild(row);
-      examples.appendChild(el("p", { class: "howto__caption" }, [text]));
-    };
-    mkExample("crane", 0, "correct", "C is in the word and in the correct spot.");
-    mkExample("tiles", 1, "present", "I is in the word but in the wrong spot.");
-    mkExample("ghost", 3, "absent", "S is not in the word in any spot.");
-    body.appendChild(examples);
-    body.appendChild(el("p", { class: "howto__tip" }, ["💡 Use a Hint to reveal a useful letter. Turn on Hard Mode for a tougher challenge. A new word unlocks every day!"]));
 
-    const start = el("button", { class: "btn btn--accent btn--block", type: "button" }, ["Got it!"]);
+    body.appendChild(el("p", { class: "howto__lead" }, [
+      "Guess the hidden 5-letter word. You get ", el("b", {}, ["6 tries"]), ".",
+    ]));
+    body.appendChild(el("p", { class: "howto__lead" }, [
+      "Type any real 5-letter word and press ", el("b", {}, ["Enter"]),
+      ". After each guess the tiles change colour to give you clues:",
+    ]));
+
+    // Colour legend — each row shows a real coloured tile + a plain explanation.
+    const legend = el("div", { class: "ht-legend" });
+    const legendRow = (state, letter, title, desc) =>
+      el("div", { class: "ht-legend__row" }, [
+        el("div", { class: "ht-tile ht-tile--" + state }, [letter]),
+        el("div", { class: "ht-legend__text" }, [
+          el("b", {}, [title]), el("span", {}, [desc]),
+        ]),
+      ]);
+    legend.appendChild(legendRow("correct", "W", "Green", "Right letter, right spot."));
+    legend.appendChild(legendRow("present", "O", "Yellow", "Right letter, wrong spot."));
+    legend.appendChild(legendRow("absent", "X", "Grey", "This letter is not in the word."));
+    body.appendChild(legend);
+
+    // Worked example.
+    body.appendChild(el("div", { class: "howto__h" }, ["Example"]));
+    body.appendChild(el("p", { class: "howto__ex-line" }, [
+      "The hidden word is ", el("b", {}, ["REACT"]), ". You guess ", el("b", {}, ["TRADE"]), ":",
+    ]));
+    const ex = el("div", { class: "ht-row" });
+    const exData = [["t", "present"], ["r", "present"], ["a", "correct"], ["d", "absent"], ["e", "present"]];
+    for (const [ch, st] of exData) ex.appendChild(el("div", { class: "ht-tile ht-tile--" + st }, [ch.toUpperCase()]));
+    body.appendChild(ex);
+    body.appendChild(el("ul", { class: "howto__ex-notes" }, [
+      el("li", {}, ["🟩 A is green — it's in REACT and in the same spot."]),
+      el("li", {}, ["🟨 T, R, E are yellow — they're in REACT but elsewhere."]),
+      el("li", {}, ["⬛ D is grey — it isn't in the word at all."]),
+    ]));
+
+    body.appendChild(el("div", { class: "howto__tip" }, [
+      "💡 Stuck? Tap ", el("b", {}, ["Hint"]), " for a useful letter. A brand-new word unlocks every day — keep your 🔥 streak going!",
+    ]));
+
+    const start = el("button", { class: "btn btn--accent btn--block", type: "button" }, ["Let's Play!"]);
     const dlg = this.open("How to Play", body, { footer: start, cls: "panel--narrow", onClose });
     start.addEventListener("click", () => { this.api.sfx("click"); dlg.close(); if (onClose) onClose(); });
   }
