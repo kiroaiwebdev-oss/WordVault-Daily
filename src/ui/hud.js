@@ -49,7 +49,8 @@ export class Hud {
 
   setHomeMode(isHome) {
     // On the home screen the icon is a logo; during play it's a pause/menu button.
-    this.btnHome.textContent = isHome ? "📖" : "⏸";
+    // Use glyphs that render reliably across platforms (avoids missing-box icons).
+    this.btnHome.textContent = isHome ? "📖" : "☰";
     this.btnHome.title = isHome ? "WordVault" : "Pause";
   }
 

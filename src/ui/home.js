@@ -35,7 +35,7 @@ export class Home {
     let dailySub = "Today's word";
     if (dailyStatus.status === "won") { dailyLabel = "✓ Daily Complete"; dailySub = `Solved in ${dailyStatus.rows}`; }
     else if (dailyStatus.status === "lost") { dailyLabel = "Daily Finished"; dailySub = "Come back tomorrow"; }
-    else if (dailyStatus.status === "playing") { dailyLabel = "⏵ Continue Daily"; dailySub = `${dailyStatus.rows} guesses in`; }
+    else if (dailyStatus.status === "playing") { dailyLabel = "▶ Continue Daily"; dailySub = `${dailyStatus.rows} guesses in`; }
 
     const playDaily = el("button", { class: "btn btn--hero", type: "button" }, [
       el("span", { class: "btn__main" }, [dailyLabel]),
@@ -89,7 +89,7 @@ export class Home {
     grid.appendChild(mk("❓", "How to Play", () => this.api.openHowTo()));
     this.root.appendChild(grid);
 
-    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.4"]));
+    this.root.appendChild(el("div", { class: "home__footer" }, ["A new word every day · Made with ♥ · v1.5"]));
   }
 
   _missions(s) {
